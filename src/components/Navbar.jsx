@@ -1,13 +1,15 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { UserContext } from "../context/UserContext";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const { total = 0 } = useContext(CartContext);
+  const { token, logout } = useContext(UserContext);
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
-      {/* Logo / Nombre */}
+      {/* Logo */}
       <Link className="navbar-brand fw-bold" to="/">
         🍕 Mamma Mía
       </Link>
@@ -22,29 +24,48 @@ export default function Navbar() {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      {/* Contenido */}
       <div className="collapse navbar-collapse" id="navbarNav">
-        {/* Links izquierda */}
+        {/* IZQUIERDA */}
         <ul className="navbar-nav me-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/">Home</Link>
           </li>
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/profile">Perfil</Link>
-          </li>
+          {/* SOLO si está logueado */}
+          {token && (
+            <li className="nav-item">
+              <Link className="nav-link" to="/profile">Perfil</Link>
+            </li>
+          )}
         </ul>
 
-        {/* Derecha */}
+        {/* DERECHA */}
         <div className="d-flex align-items-center gap-3">
-          <Link className="btn btn-outline-light btn-sm" to="/login">
-            Login
-          </Link>
+          
+          {/* Si NO está logueado */}
+          {!token ? (
+            <>
+              <Link className="btn btn-outline-light btn-sm" to="/login">
+                Login
+              </Link>
 
-          <Link className="btn btn-outline-light btn-sm" to="/register">
-            Register
-          </Link>
+              <Link className="btn btn-outline-light btn-sm" to="/register">
+                Register
+              </Link>
+            </>
+          ) : (
+            <>
+              {/* Si está logueado */}
+              <button
+                className="btn btn-outline-light btn-sm"
+                onClick={logout}
+              >
+                Logout
+              </button>
+            </>
+          )}
 
+          {/* Carrito siempre visible */}
           <Link className="btn btn-warning btn-sm" to="/cart">
             🛒 ${total.toLocaleString("es-CL")}
           </Link>

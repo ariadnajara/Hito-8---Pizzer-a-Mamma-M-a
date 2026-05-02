@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const RegisterPage = () => {
+  const { login } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -8,7 +13,6 @@ const RegisterPage = () => {
   const validarDatos = (e) => {
     e.preventDefault();
 
-    // Validaciones
     if (!email || !password || !confirmPassword) {
       alert("Todos los campos son obligatorios.");
       return;
@@ -20,30 +24,50 @@ const RegisterPage = () => {
     }
 
     if (password !== confirmPassword) {
-      alert("El password y la confirmación deben ser iguales.");
+      alert("Las contraseñas no coinciden.");
       return;
     }
 
+    // 🔥 LOGIN SIMULADO (hito 7)
+    login();
+
     alert("¡Registro exitoso!");
+    navigate("/");
   };
 
   return (
     <div className="container d-flex justify-content-center my-5">
-      <form className="col-12 col-md-6 shadow p-4 rounded bg-white" onSubmit={validarDatos}>
+      <form
+        className="col-12 col-md-6 shadow p-4 rounded bg-white"
+        onSubmit={validarDatos}
+      >
         <h2 className="mb-4 text-center">Registro</h2>
-        <div className="mb-3">
-          <label className="form-label">Email</label>
-          <input type="email" className="form-control" onChange={(e) => setEmail(e.target.value)} value={email} />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Contraseña</label>
-          <input type="password" className="form-control" onChange={(e) => setPassword(e.target.value)} value={password} />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">Confirmar contraseña</label>
-          <input type="password" className="form-control" onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} />
-        </div>
-        <button type="submit" className="btn btn-dark w-100 mt-2">Enviar</button>
+
+        <input
+          type="email"
+          className="form-control mb-3"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          className="form-control mb-3"
+          placeholder="Contraseña"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <input
+          type="password"
+          className="form-control mb-3"
+          placeholder="Confirmar contraseña"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+
+        <button className="btn btn-dark w-100">Enviar</button>
       </form>
     </div>
   );

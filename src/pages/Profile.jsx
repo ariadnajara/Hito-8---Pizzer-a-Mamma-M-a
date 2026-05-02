@@ -1,25 +1,23 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const Profile = () => {
-  const email = "usuario@email.com"; // email estático por ahora
+  const { logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <div className="container mt-5 text-center">
-      <h2 className="mb-4">👤 Perfil</h2>
+      <h2>👤 Perfil</h2>
 
-      <p className="fs-5">
-        <strong>Email:</strong> {email}
-      </p>
-
-      <div className="d-flex justify-content-center gap-3 mt-4">
-        <button className="btn btn-danger">
-          🔒 Cerrar sesión
-        </button>
-
-        <Link to="/" className="btn btn-outline-dark">
-          ⬅ Volver al Home
-        </Link>
-      </div>
+      <button className="btn btn-danger mt-4" onClick={handleLogout}>
+        Cerrar sesión
+      </button>
     </div>
   );
 };
