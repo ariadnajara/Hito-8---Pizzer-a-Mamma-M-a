@@ -1,22 +1,17 @@
-🍕 Pizzería Mamma Mía
+## 🍕 Proyecto Pizzeria Mamma Mia  
 
-Aplicación web desarrollada con React que simula una pizzería online, permitiendo visualizar productos y gestionar un carrito de compras utilizando Context API.
-
------- 
-
-🚀 Funcionalidades
-
-
-🧾 Listado de pizzas
-🛒 Agregar productos al carrito
-➕ Aumentar cantidad de productos
-➖ Disminuir o eliminar productos
-💰 Cálculo automático del total
-🔄 Estado global con Context API
-📱 Diseño responsive con Bootstrap
+Este proyecto corresponde al Hito 7 del módulo de React, donde se implementa manejo de rutas dinámicas, contexto global para autenticación simulada y rutas protegidas.
 
 ------ 
-🛠️ Tecnologías utilizadas
+
+## 📌 Funcionalidades del proyecto
+1. 🔍 Detalle de pizzas con useParams
+Se implementa una ruta dinámica /pizza/:id
+Se obtiene el id desde la URL con useParams
+Se realiza una petición a la API para mostrar la información de la pizza seleccionada
+
+------ 
+## 🛠️ Tecnologías utilizadas
 React
 Context API
 React Router DOM
@@ -24,11 +19,35 @@ Bootstrap
 JavaScript 
 
 ------ 
+
+## 🌐 Contexto de usuario (UserContext)
+Se crea un contexto global para manejar autenticación simulada
+El estado token controla si el usuario está logueado o no
+Incluye métodos:
+login() → activa el token
+logout() → desactiva el token
+
+
+------ 
+
+## 🛒 Carrito protegido
+El botón "Pagar" se deshabilita si el usuario no está logueado (token = false)
+
+------ 
+
+## 🔐 Rutas protegidas
+/profile solo es accesible si el usuario está logueado
+Si token = false, se redirige a /login
+Si el usuario está logueado, no puede acceder a /login ni /register
+
+------  
+
 ## 📷 Captura de Imagen 
 
 <img width="1889" height="837" alt="image" src="https://github.com/user-attachments/assets/aa08d0f5-2722-4e3d-864d-2611dbb081c5" />
 
-<img width="583" height="795" alt="image" src="https://github.com/user-attachments/assets/6d60f37c-8832-4056-ae6e-42d338f60d24" />
+<img width="675" height="611" alt="image" src="https://github.com/user-attachments/assets/bb34e38c-b061-4097-95c9-37efbb54a961" />
+
 
 
 ------
