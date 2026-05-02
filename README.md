@@ -1,16 +1,38 @@
-# React + Vite
+🍕 Pizzería Mamma Mía
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web desarrollada con React que simula una pizzería online, permitiendo visualizar productos y gestionar un carrito de compras utilizando Context API.
 
-Currently, two official plugins are available:
+------ 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+🚀 Funcionalidades
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🧾 Listado de pizzas
+🛒 Agregar productos al carrito
+➕ Aumentar cantidad de productos
+➖ Disminuir o eliminar productos
+💰 Cálculo automático del total
+🔄 Estado global con Context API
+📱 Diseño responsive con Bootstrap
 
-## Expanding the ESLint configuration
+------ 
+🛠️ Tecnologías utilizadas
+React
+Context API
+React Router DOM
+Bootstrap
+JavaScript 
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+------ 
+## 📷 Captura de Imagen 
+
+<img width="1889" height="837" alt="image" src="https://github.com/user-attachments/assets/aa08d0f5-2722-4e3d-864d-2611dbb081c5" />
+
+<img width="583" height="795" alt="image" src="https://github.com/user-attachments/assets/6d60f37c-8832-4056-ae6e-42d338f60d24" />
+
+
+------
+
+👩‍💻 Autor
+
+Proyecto desarrollado por Ariadna Jara
