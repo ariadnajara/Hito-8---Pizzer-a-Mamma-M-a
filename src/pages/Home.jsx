@@ -1,41 +1,42 @@
 import { useEffect, useState } from "react";
+import CardPizza from "../components/CardPizza";
 
 const Home = () => {
   const [pizzas, setPizzas] = useState([]);
 
   useEffect(() => {
-    const getPizzas = async () => {
-      try {
-        const res = await fetch("http://localhost:5000/api/pizzas");
-        const data = await res.json();
-        setPizzas(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    getPizzas();
+    setPizzas([
+      {
+        id: "p001",
+        name: "Napolitana",
+        price: 5950,
+        ingredients: ["mozzarella", "tomate", "albahaca"],
+      },
+      {
+        id: "p002",
+        name: "Española",
+        price: 6950,
+        ingredients: ["mozzarella", "Salame"],
+      },
+      {
+        id: "p003",
+        name: "Pepperoni",
+        price: 6950,
+        ingredients: ["mozzarella", "pepperoni"],
+      },
+    ]);
   }, []);
 
   return (
-    <div>
-      <h1>Pizzas 🍕</h1>
+    <div className="container">
+     <h1 className="text-center my-4 fw-bold">
+  🍕 Pizzería Mamma Mía
+</h1>
 
-      <div className="pizzas-container">
+      <div className="row">
         {pizzas.map((pizza) => (
-          <div key={pizza.id} className="pizza-card">
-      <img src="http://localhost:5000/images/p001.jpg" alt="test" />
-            <h2>{pizza.name}</h2>
-            <p>{pizza.desc}</p>
-
-            <ul>
-              {pizza.ingredients.map((ing, index) => (
-                <li key={index}>{ing}</li>
-              ))}
-            </ul>
-
-            <p><strong>${pizza.price}</strong></p>
-            <button>Ver más</button>
+          <div key={pizza.id} className="col-md-4">
+            <CardPizza pizza={pizza} />
           </div>
         ))}
       </div>
