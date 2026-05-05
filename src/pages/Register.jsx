@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 
 const RegisterPage = () => {
-  const { login } = useContext(UserContext);
+  const { register } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const validarDatos = (e) => {
+  const validarDatos = async (e) => {
     e.preventDefault();
 
     if (!email || !password || !confirmPassword) {
@@ -28,8 +28,8 @@ const RegisterPage = () => {
       return;
     }
 
-    // 🔥 LOGIN SIMULADO (hito 7)
-    login();
+    // 🔥 REGISTER REAL
+    await register(email, password);
 
     alert("¡Registro exitoso!");
     navigate("/");

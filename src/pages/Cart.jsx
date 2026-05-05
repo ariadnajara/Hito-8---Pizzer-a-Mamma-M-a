@@ -6,7 +6,30 @@ export default function Cart() {
   const { cart, addToCart, removeFromCart, total } =
     useContext(CartContext);
 
-  const { token } = useContext(UserContext); // 👈 nuevo
+  const { token } = useContext(UserContext);
+
+  // 🔥 FUNCIÓN CHECKOUT
+  const checkout = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/checkouts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          cart: cart,
+        }),
+      });
+
+      const data = await res.json();
+
+      alert("✅ Compra realizada con éxito 🎉");
+    } catch (error) {
+      console.error("Error en checkout:", error);
+      alert("❌ Error al procesar la compra");
+    }
+  };
 
   return (
     <div className="container mt-4">
@@ -38,10 +61,10 @@ export default function Cart() {
 
       <h2>Total: ${total.toLocaleString("es-CL")}</h2>
 
-      {/* 👇 BOTÓN IMPORTANTE */}
       <button
         className="btn btn-primary mt-3"
         disabled={!token}
+        onClick={checkout}
       >
         Pagar 💳
       </button>
